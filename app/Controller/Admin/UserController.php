@@ -26,6 +26,12 @@ class UserController extends CommonController
         return 'App\Model\User';
     }
 
+    /**
+     * @param $query
+     * @param RequestInterface $request
+     * @return mixed
+     * 各自的查询条件
+     */
     public function mergeQuery($query, RequestInterface $request)
     {
         return $query->with('roles');
