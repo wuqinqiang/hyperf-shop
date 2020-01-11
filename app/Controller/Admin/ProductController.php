@@ -49,14 +49,13 @@ class ProductController extends CommonController
 
     public function mergeQuery($query, $request)
     {
-        return $query
-            ->when($type = $request->input('type'), function ($query) use ($type) {
-                if ($type == Product::TIME_SALE) { //下架商品
-                    $query->whereIn('on_sale', [Product::UN_SALE,Product::TIME_SALE]);
-                } else {
-                    $query->where('on_sale',$type);
-                }
-            })
+        return $query->when($type = $request->input('type'), function ($query) use ($type) {
+            if ($type == Product::TIME_SALE) { //下架商品
+                $query->whereIn('on_sale', [Product::UN_SALE, Product::TIME_SALE]);
+            } else {
+                $query->where('on_sale', $type);
+            }
+        })
             ->when($created_at = $request->input('created_at'), function ($query) use ($created_at) {
                 $query->where('created_at', '>=', $created_at);
             })
