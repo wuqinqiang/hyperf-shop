@@ -45,7 +45,7 @@ class PermissionController extends CommonController
         $permission = Permission::create([
             'name' => $request->input('name'),
             'display_name' => $request->input('display_name'),
-            'url' => $request->input('url'),
+            'url' => $request->input('url')??'',
             'parent_id' => $request->input('parent_id') ?? 0,
             'sort' => $request->input('sort') ?? 0,
         ]);

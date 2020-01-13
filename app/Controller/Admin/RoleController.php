@@ -35,7 +35,9 @@ class RoleController extends CommonController
 
     public function mergeQuery($query, RequestInterface $request)
     {
-        return $query;
+        return $query->with(['permissions'=>function($query){
+            $query->select('id','name','display_name');
+        }]);
     }
 
     /**
