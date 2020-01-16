@@ -35,8 +35,9 @@ class ProductSkus extends Model
      * @var array
      */
     protected $casts = ['id' => 'int', 'product_id' => 'integer', 'before_price' => 'float', 'price' => 'float', 'stock' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
     public function product()
     {
-        return $this->belongsTo(ProductSkus::class);
+        return $this->belongsTo(Product::class);
     }
 }

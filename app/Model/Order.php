@@ -1,32 +1,35 @@
 <?php
 
 declare (strict_types=1);
+
 namespace App\Model;
 
+use Hyperf\Database\Model\Events\Creating;
 use Hyperf\DbConnection\Model\Model;
+
 /**
- * @property int $id 
- * @property string $no 
- * @property int $user_id 
- * @property string $address 
- * @property float $total_amount 
- * @property float $pay_amount 
- * @property string $user_name 
- * @property string $user_phone 
- * @property int $user_type 
- * @property string $remark 
- * @property string $paid_at 
- * @property string $payment_no 
- * @property int $refund_status 
- * @property int $closed 
- * @property int $reviewed 
- * @property int $ship_status 
- * @property string $ship_company 
- * @property float $pay_ship 
- * @property string $ship_no 
- * @property string $ship_image 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property int $id
+ * @property string $no
+ * @property int $user_id
+ * @property string $address
+ * @property float $total_amount
+ * @property float $pay_amount
+ * @property string $user_name
+ * @property string $user_phone
+ * @property int $user_type
+ * @property string $remark
+ * @property string $paid_at
+ * @property string $payment_no
+ * @property int $refund_status
+ * @property int $closed
+ * @property int $reviewed
+ * @property int $ship_status
+ * @property string $ship_company
+ * @property float $pay_ship
+ * @property string $ship_no
+ * @property string $ship_image
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Order extends Model
 {
@@ -36,15 +39,47 @@ class Order extends Model
      * @var string
      */
     protected $table = 'orders';
+
+    const SHIP_NO=0;
+    const SHIP_GO=2;
+    const SHIP_GET=1;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['no','user_id','address','total_amount','pay_amount',
-        'user_name','user_phone','user_type','remark','paid_at','payment_no','refund_status',
-        'closed','reviewed','ship_status','ship_company','pay_ship','ship_no','ship_image',
+    protected $fillable = ['no', 'user_id', 'address', 'total_amount', 'pay_amount',
+        'user_name', 'user_phone', 'user_type', 'remark', 'paid_at', 'payment_no', 'refund_status',
+        'closed', 'reviewed', 'ship_status', 'ship_company', 'pay_ship', 'ship_no', 'ship_image',
     ];
+
+    public function creating(Creating $event)
+    {
+        $this->no = self::createNo();
+    }
+
+
+    /**
+     * @return string
+     * @throws \Exception
+     * 先不用考虑并发下订单重复
+     */
+    public static function createNo()
+    {
+        // 订单流水号前缀
+        $prefix = date('YmdHis');
+        for ($i = 0; $i < 10; $i++) {
+            // 随机生成 6 位的数字
+            $no = $prefix . str_pad(random_int(0, 999999) . 'test', 6, '0', STR_PAD_LEFT);
+        }
+        return $no;
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
