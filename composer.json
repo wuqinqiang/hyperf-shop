@@ -45,7 +45,8 @@
         "phper666/jwt-auth": "~2.0.1",
         "hyperf/validation": "^1.1",
         "aliyuncs/oss-sdk-php": "^2.3",
-        "donjan-deng/hyperf-permission": "^1.0"
+        "donjan-deng/hyperf-permission": "^1.0",
+        "hyperf/constants": "^1.1"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",

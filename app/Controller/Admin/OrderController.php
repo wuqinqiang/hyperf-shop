@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Constants\OrderCode;
 use App\Controller\CommonController;
 use App\Exception\BusinessException;
 use App\Model\Order;
@@ -30,38 +31,59 @@ class OrderController extends CommonController
         return 'App\Model\Order';
     }
 
+    /**
+     * @param $query
+     * @param RequestInterface $request
+     * @return mixed
+     */
     public function mergeQuery($query, RequestInterface $request)
     {
         return $query->with(['items'])
             ->when($no = $request->input('no'), function ($query) use ($no) {
                 $query->where('no', 'like', '%' . $no . '%');
             })
-            ->when($user_type = $request->user_type, function ($query) use ($user_type) {
-                $query->whereUserType($user_type);
+            ->when($created_at = $request->input('created_at'), function ($query) use ($created_at) {
+                $query->where('created_at', '>', $created_at);
             })
-            ->when($request->order_status == 1, function ($query) { //代付款
+            ->when($user_phone = $request->input('user_phone'), function ($query) use ($user_phone) {
+                $query->where('user_phone', 'like', '%' . $user_phone . '%');
+            })
+            ->when($user_name = $request->input('user_name'), function ($query) use ($user_name) {
+                $query->where('user_name', 'like', '%' . $user_name . '%');
+            })
+            ->when($request->input('order_status') == OrderCode::WAIT_PAY, function ($query) { //代付款
                 $query->whereNull('paid_at')->whereClosed(false);
             })
-            ->when($request->order_status == 2, function ($query) { //代发货
+            ->when($request->input('order_status') == OrderCode::WAIT_SHIP, function ($query) { //代发货
                 $query->whereShipStatus(Order::SHIP_NO)->whereNotNull('paid_at')->whereRefundStatus(Order::REFUND_NO);
             })
-            ->when($request->order_status == 3, function ($query) { //待收货
+            ->when($request->input('order_status') == OrderCode::WAIT_EGT, function ($query) { //待收货
                 $query->whereShipStatus(Order::SHIP_GO)->whereRefundStatus(Order::REFUND_NO);
             })
-            ->when($request->order_status == 4, function ($query) { //皮昂嘉
+            ->when($request->input('order_status') == OrderCode::WAIT_REFUND, function ($query) { //售后
                 $query->where('refund_status', '>', Order::REFUND_NO);
             })
-            ->when($request->order_status == 5, function ($query) { //已完成
-                $query->whereStatus(true);
+            ->when($request->input('order_status') == OrderCode::ORDER_OVER, function ($query) { //已完成
+                $query->whereStatus(Order::ORDER_OVER);
+            })
+            ->when($refund_status = $request->input('refund_status'), function ($query) use ($refund_status) { //已完成
+                $query->whereRefundStatus($refund_status);
             });
-//            ->when($request->refund_status == Order::REFUND_APPLY, function ($query) { //正在申请售后
-//                $query->whereRefundStatus(Order::REFUND_APPLY);
-//            });
     }
 
     public function isCanDelete(object $model)
     {
         return true;
+    }
+
+
+    /**
+     * @GetMapping(path="{id:\d+}")
+     */
+    public function show(int $id)
+    {
+        $order = Order::find($id);
+        return $this->response->json(['data' => $order->load('items')]);
     }
 
 

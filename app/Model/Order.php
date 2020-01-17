@@ -41,8 +41,15 @@ class Order extends Model
     protected $table = 'orders';
 
     const SHIP_NO=0;
+    const SHIP_SUCCESS=1;
     const SHIP_GO=2;
-    const SHIP_GET=1;
+    const REFUND_NO = 0;      //未售后
+    const REFUND_SUCCESS = 1;//完成售后(建立在同意售后基础上）
+    const REFUND_APPLY = 2; //申请售后中
+    const REFUND_AGREE = 3; //同意售后
+    const REFUND_STATUS_ERROR = 4; //拒绝售后
+
+    const ORDER_OVER=1;
     /**
      * The attributes that are mass assignable.
      *
@@ -50,7 +57,7 @@ class Order extends Model
      */
     protected $fillable = ['no', 'user_id', 'address', 'total_amount', 'pay_amount',
         'user_name', 'user_phone', 'user_type', 'remark', 'paid_at', 'payment_no', 'refund_status',
-        'closed', 'reviewed', 'ship_status', 'ship_company', 'pay_ship', 'ship_no', 'ship_image',
+        'closed', 'reviewed', 'ship_status', 'ship_company', 'pay_ship', 'ship_no', 'ship_image','status'
     ];
 
     public function creating(Creating $event)
@@ -85,5 +92,5 @@ class Order extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'int', 'user_id' => 'integer', 'total_amount' => 'float', 'pay_amount' => 'float', 'user_type' => 'integer', 'refund_status' => 'integer', 'closed' => 'integer', 'reviewed' => 'integer', 'ship_status' => 'integer', 'pay_ship' => 'float', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'int', 'user_id' => 'integer', 'total_amount' => 'float', 'pay_amount' => 'float', 'user_type' => 'integer', 'refund_status' => 'integer', 'closed' => 'integer', 'reviewed' => 'integer', 'ship_status' => 'integer', 'pay_ship' => 'float', 'created_at' => 'datetime', 'updated_at' => 'datetime','status'=>'integer'];
 }
