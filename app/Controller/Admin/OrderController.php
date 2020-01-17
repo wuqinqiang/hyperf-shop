@@ -7,7 +7,8 @@ use App\Controller\CommonController;
 use App\Exception\BusinessException;
 use App\Model\Order;
 use App\Model\ProductSkus;
-use App\Request\OrderRequest;
+use App\Request\Admin\GoShipRequest;
+use App\Request\Admin\OrderRequest;
 use Hyperf\DbConnection\Db;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\GetMapping;
@@ -83,6 +84,9 @@ class OrderController extends CommonController
     public function show(int $id)
     {
         $order = Order::find($id);
+        if (!$order) {
+            throw new BusinessException('请查看正确的订单');
+        }
         return $this->response->json(['data' => $order->load('items')]);
     }
 
@@ -103,12 +107,13 @@ class OrderController extends CommonController
                     'product_name' => $sku->product->name,
                     'sku_title' => $sku->title,
                     'amount' => $item['amount'],
-                    'price' => $sku->price * $item['amount'],
+                    'price' => $sku->price,
+                    'pay_amount' => $sku->price * $item['amount'],
                 ]);
                 $orderItem->product()->associate($sku->product_id);
                 $orderItem->productSku()->associate($sku);
                 $orderItem->save();
-                $total_amount += $orderItem->price;
+                $total_amount += $orderItem->pay_amount;
             });
             $order->update([
                 'pay_amount' => $total_amount,
@@ -120,9 +125,9 @@ class OrderController extends CommonController
     }
 
     /**
-     * @PostMapping(path="{id:\d+}")
+     * @PostMapping(path="ship/{id:\d+}")
      */
-    public function goShip(RequestInterface $request, int $id)
+    public function goShip(GoShipRequest $request, int $id)
     {
         $order = Order::find($id);
         if (!$order->paid_at) {
@@ -131,9 +136,11 @@ class OrderController extends CommonController
         if ($order->ship_status > 0) {
             throw new BusinessException('商品已发货');
         }
-
         $order->update([
             'ship_status' => Order::SHIP_GO,
+            'ship_company' => $request->input('ship_company'),
+            'ship_no' => $request->input('ship_no'),
+            'ship_image' => $request->input('ship_image'),
         ]);
         return $this->response->json(['data' => $order]);
     }

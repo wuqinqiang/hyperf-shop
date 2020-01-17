@@ -22,7 +22,7 @@ class OrderItem extends Model
      * @var array
      */
     protected $fillable = ['order_id', 'product_id', 'product_sku_id', 'product_name',
-        'sku_title', 'amount', 'price'
+        'sku_title', 'amount', 'price','pay_amount'
     ];
     /**
      * The attributes that should be cast to native types.

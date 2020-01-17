@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Request;
+namespace App\Request\Admin;
 
 use App\Exception\BusinessException;
 use App\Model\Product;
