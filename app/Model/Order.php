@@ -99,6 +99,23 @@ class Order extends Model
         return self::mergePayQuery();
     }
 
+    public static function refundAmount()
+    {
+        return self::countAll()
+            ->whereHas('refund', function ($query) {
+                $query->whereRefundStatus(OrderRefund::REFUND_SUCCESS);
+            });
+    }
+
+
+    public static function refundAmountYesterday()
+    {
+        return self::refundAmount()
+            ->where('created_at', '>=', Carbon::yesterday()->toDateString())
+            ->where('created_at', '<', Carbon::today()->toDateString());
+
+    }
+
 
     public static function countYesterday()
     {
@@ -107,10 +124,22 @@ class Order extends Model
             ->where('created_at', '<', Carbon::today()->toDateString());
     }
 
+    public function refund()
+    {
+        return $this->hasOne(OrderRefund::class);
+    }
+
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = ['id' => 'int', 'user_id' => 'integer', 'total_amount' => 'float', 'pay_amount' => 'float', 'user_type' => 'integer', 'refund_status' => 'integer', 'closed' => 'integer', 'reviewed' => 'integer', 'ship_status' => 'integer', 'pay_ship' => 'float', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'status' => 'integer'];
+    protected $casts = ['id' => 'int', 'user_id' => 'integer',
+        'total_amount' => 'float', 'pay_amount' => 'float',
+        'user_type' => 'integer', 'refund_status' => 'integer',
+        'closed' => 'integer', 'reviewed' => 'integer',
+        'ship_status' => 'integer', 'pay_ship' => 'float',
+        'created_at' => 'datetime', 'updated_at' => 'datetime',
+        'status' => 'integer'];
 }
