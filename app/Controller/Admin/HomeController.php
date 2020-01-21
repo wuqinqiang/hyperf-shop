@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
 use App\Model\Order;
+use Carbon\Carbon;
 use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\GetMapping;
 use Hyperf\HttpServer\Annotation\Middleware;
@@ -47,24 +48,10 @@ class HomeController extends AbstractController
      */
     public function history()
     {
-        $data['trade'] = 10;
-        $data['pay'] = 20;
-        $data['refund'] = 30;
-        $data['pv'] = 40;
-        $data['uv'] = 50;
-        $data['register'] = 60;
-        $data['agent'] = 70;
-        $data['buy'] = 11;
-        $data['order'] = Order::query()->whereNotNull('paid_at')->count();
-        $data['withdraws'] = 22;
-        $data['trade_all'] = 33;
-        $data['pay_all'] = 44;
-        $data['refund_all'] = 55;
-        $data['pv_all'] = 66;
-        $data['uv_all'] = 77;
-        $data['register_all'] = 22;
-        $data['agent_all'] = 33;
-        $data['buy_all'] = 44;
+        $data=[];
+        for ($i=1;$i<10;$i++){
+            $data[]=['date'=>Carbon::parse("+{$i} days")->toDateString(),'order'=>rand(4,300),'pay'=>rand(234,10000),'refund'=>rand(3,100),'pv'=>rand(10000,6666),'uv'=>rand(1000,10000),'register'=>rand(20,100),'agent'=>rand(23,1000),'buy'=>rand(100,999)];
+        }
         return $this->response->json(['data' => $data]);
     }
 }

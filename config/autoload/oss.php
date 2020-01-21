@@ -9,6 +9,6 @@ return [
         'path' => BASE_PATH . '/runtime/storage/',
         'timeOut' => 3600,
         'connectTimeout' => 10,
-        'expire' => 60*60*24*365,
+        'expire' => 60 * 60 * 24 * 365,
     ]
 ];
