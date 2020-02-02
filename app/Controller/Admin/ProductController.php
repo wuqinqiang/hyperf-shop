@@ -99,8 +99,8 @@ class ProductController extends CommonController
                 'time_on' => $request->input('on_sale') == Product::TIME_SALE ? $request->input('time_on') : null,
                 'time_off' => $request->input('on_sale') == Product::TIME_SALE ? $request->input('time_off') : null,
                 'fare' => $request->input('fare'),
-                'only_buy' => $request->input('only_buy') ?? 9999,
-                'only_count' => $request->input('only_count') ?? 9999,
+                'only_buy' => $request->input('only_buy')>0 ?? 9999,
+                'only_count' => $request->input('only_count')>0 ?? 9999,
                 'images' => $request->input('image_address'),
             ]);
 
