@@ -26,7 +26,7 @@ class User extends Model
      */
     protected $fillable = ['id', 'name', 'email', 'phone', 'gender', 'type', 'password', 'created_at', 'updated_at',
         'deleted_at', 'monetary', 'open_id', 'wechat_openid', 'union_id', 'avatar_url', 'wechat', 'location',
-        'buy_count', 'last_buy'
+        'buy_count', 'last_buy','status'
     ];
     /**
      * The attributes that should be cast to native types.

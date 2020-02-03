@@ -35,15 +35,21 @@ abstract class CommonController extends AbstractController
      * @return mixed
      * 自定义查询
      */
-    abstract function mergeQuery($query,RequestInterface $request);
+    abstract function mergeQuery($query, RequestInterface $request);
 
     /**
      * @GetMapping(path="")
      */
     public function index(RequestInterface $request)
     {
-        $query = $this->mergeQuery($this->getModel()::query(),$request);
-        $data = $query->paginate(20);
+        $query = $this->mergeQuery($this->getModel()::query(), $request);
+        $data = $query->paginate(20)->toArray();
+        return $this->ownResponse($data);
+    }
+
+
+    public function ownResponse($data)
+    {
         return $this->response->json(['data' => $data]);
     }
 

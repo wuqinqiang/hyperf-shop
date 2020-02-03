@@ -34,7 +34,17 @@ class UserController extends CommonController
      */
     public function mergeQuery($query, RequestInterface $request)
     {
-        return $query->with('roles');
+        return $query->with(['roles' => function ($query) {
+            $query->select('name');
+        }]);
+    }
+
+    public function ownResponse($users)
+    {
+        foreach ($users['data'] as $key => $user) {
+            $users['data'][$key]['roles'] = implode(" ", collect($user['roles'])->pluck('name')->toArray());
+        }
+        return $this->response->json(['data' => $users]);
     }
 
     public function isCanDelete(object $model)
@@ -75,6 +85,17 @@ class UserController extends CommonController
             $user->roles()->detach();
             $user->assignRole($request->input('cid'));
         }
+        return $response->json(['data' => $user]);
+    }
+
+    /**
+     * @PostMapping(path="status/{id:\d+}")
+     */
+    public function updateStatus(RequestInterface $request, int $id, ResponseInterface $response)
+    {
+        $user = User::find($id);
+        $user->status = $user->status == 1 ? 2 : 1;
+        $user->save();
         return $response->json(['data' => $user]);
     }
 
