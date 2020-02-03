@@ -47,9 +47,6 @@ class ProductRequest extends FormRequest
                 'skus.*.sku_image' => 'required',
                 'time_on' => 'required_if:on_sale,2',
                 'time_off' => 'required_if:on_sale,2',
-                'descriptions' => 'required|array',
-                'descriptions.*.type' => 'required|integer|between:1,2',
-                'descriptions.*.content' => 'required',
                 'only_buy' => 'integer|max:9999',
                 'only_count' => 'integer|max:9999',
 
@@ -76,9 +73,6 @@ class ProductRequest extends FormRequest
                 'time_on' => 'required_if:on_sale,2',
                 'time_off' => 'required_if:on_sale,2',
                 'fare' => 'required_if:fare_type,1|numeric|min:0',
-                'descriptions' => 'required|array',
-                'descriptions.*.type' => 'required|integer|between:1,2',
-                'descriptions.*.content' => 'required',
                 'only_buy' => 'max:9999',
                 'only_count' => 'max:9999'
             ];

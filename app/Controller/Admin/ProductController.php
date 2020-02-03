@@ -99,8 +99,8 @@ class ProductController extends CommonController
                 'time_on' => $request->input('on_sale') == Product::TIME_SALE ? $request->input('time_on') : null,
                 'time_off' => $request->input('on_sale') == Product::TIME_SALE ? $request->input('time_off') : null,
                 'fare' => $request->input('fare'),
-                'only_buy' => $request->input('only_buy') > 0 ?? 9999,
-                'only_count' => $request->input('only_count') > 0 ?? 9999,
+                'only_buy' => $request->input('only_buy') > 0 ? $request->input('only_buy') : 9999,
+                'only_count' => $request->input('only_count') > 0 ? $request->input('only_buy') : 9999,
                 'images' => $request->input('image_address'),
             ]);
 
@@ -114,7 +114,9 @@ class ProductController extends CommonController
             }
 
             //商品简介
-            $descriptionArray = ProductDescription::createProductDescription($request->input('descriptions'), $product->id);
+            if($request->input('descriptions')){
+                $descriptionArray = ProductDescription::createProductDescription($request->input('descriptions'), $product->id);
+            }
             //商品sku
             foreach ($request->input('skus') as $index => $sku) {
                 $productSku = ProductSkus::create([
@@ -142,8 +144,8 @@ class ProductController extends CommonController
             $data = $request->all();
             $data['price'] = collect($request->input('skus'))->min('price');
             $data['category_name'] = Category::find($data['category_id'])->name;
-            $data['only_buy'] = $request->input('only_buy') > 0 ?? 9999;
-            $data['only_count'] = $request->input('only_count') > 0 ?? 9999;
+            $data['only_buy'] = $request->input('only_buy') > 0 ? $request->input('only_buy') : 9999;
+            $data['only_count'] = $request->input('only_count') > 0 ? $request->input('only_count') : 9999;
             $productInfo->fill($data);
             $productInfo->save();
 
