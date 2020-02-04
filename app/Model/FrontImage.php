@@ -26,7 +26,8 @@ class FrontImage extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','image','url','status','weight'];
+    protected $fillable = ['id','image','url','status','
+    '];
     /**
      * The attributes that should be cast to native types.
      *

@@ -22,7 +22,7 @@ class FrontImageController extends CommonController
         return 'App\Model\FrontImage';
     }
 
-    public function mergeQuery($query,$request)
+    public function mergeQuery($query, $request)
     {
         return $query;
     }
@@ -37,7 +37,9 @@ class FrontImageController extends CommonController
      */
     public function store()
     {
-        $frontImage = FrontImage::create($this->request->all());
+        $data = $this->request->all();
+        $data['weight'] = $this->request->input('weight') > 0 ? $this->request->input('weight') : 0;
+        $frontImage = FrontImage::create($data);
         return $this->response->json($frontImage);
     }
 
