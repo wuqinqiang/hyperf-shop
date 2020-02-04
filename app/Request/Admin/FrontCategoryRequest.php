@@ -24,7 +24,7 @@ class FrontCategoryRequest extends FormRequest
     {
         if ($this->getMethod() == 'PATCH') {
             $category = $this->getUri()->getPath();
-            pregw_match('/\d+/', $category, $arr);
+            preg_match('/\d+/', $category, $arr);
             $frontCategory = FrontCategory::find(intval($arr[0]));
             return [
                 'name' => "max:50|unique:front_category,name," . $frontCategory->id,
