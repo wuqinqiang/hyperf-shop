@@ -19,7 +19,7 @@ return [
         [
             'name' => 'http',
             'type' => Server::SERVER_HTTP,
-            'host' => 'test.test',
+            'host' => 'shop.test',
             'port' => 9501,
             'sock_type' => SWOOLE_SOCK_TCP,
             'callbacks' => [
