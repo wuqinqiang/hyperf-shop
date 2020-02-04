@@ -1,13 +1,13 @@
-### 基于 Hyperf 协程框架的商城（后台）
+## 基于 Hyperf 协程框架的在线商城（后台）
 
-## 运行环境要求
+### 运行环境要求
 **直接参考 hyperf 官方文档的运行环境:https://hyperf.wiki/#/zh-cn/quick-start/install**
 
 ### 演示地址
 + http://shop.aabbccm.com/
 +   用户名test 密码123456
 
-## 安装
+### 安装
 **拉取项目**
 ```php
 git clone https://github.com/wuqinqiang/hyperf-shop.git
@@ -74,7 +74,7 @@ php bin/hyperf.php start
 ### 前端目录
 **暂时未上传**
 
-## 扩展包描述
+### 扩展包描述
 
 | 扩展包 | 描述  |  
 | --- |  --- |   
