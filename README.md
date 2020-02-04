@@ -1,7 +1,7 @@
 ### 基于 Hyperf 协程框架的商城（后台）
 
 ## 运行环境要求
-**参考 hyperf 官方文档的运行环境:https://hyperf.wiki/#/zh-cn/quick-start/install(官网文档还是比较给力的)**
+**直接参考 hyperf 官方文档的运行环境:https://hyperf.wiki/#/zh-cn/quick-start/install**
 
 
 **注意：此项目适合上手 hyperf,大部分的知识点都有使用,微服务这块本项目暂未涉及**
