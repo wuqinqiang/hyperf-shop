@@ -43,7 +43,7 @@ abstract class CommonController extends AbstractController
     public function index(RequestInterface $request)
     {
         $query = $this->mergeQuery($this->getModel()::query(), $request);
-        $data = $query->paginate(20)->toArray();
+        $data = $query->paginate(10)->toArray();
         return $this->ownResponse($data);
     }
 
