@@ -3,9 +3,6 @@
 ## 运行环境要求
 **直接参考 hyperf 官方文档的运行环境:https://hyperf.wiki/#/zh-cn/quick-start/install**
 
-
-**注意：此项目适合上手 hyperf,大部分的知识点都有使用,微服务这块本项目暂未涉及**
-
 ### 演示地址
 + http://shop.aabbccm.com/
 +   用户名test 密码123456
@@ -74,7 +71,7 @@ php bin/hyperf.php start
 - [ ] 用户操作日志
 ....
 
-### 小程序前端项目结构
+### 前端目录
 **暂时未上传**
 
 ## 扩展包描述
