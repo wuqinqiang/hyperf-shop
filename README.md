@@ -54,6 +54,10 @@ php bin/hyperf.php migrate
 php bin/hyperf.php start
 ```
 
+### 应用部署
+**我只是简单的做了 Supervisor 的部署,你可以根据需要,对应进行不同的部署,具体参考官方文档**
+
+
 ### 主要功能模块
 
 - [x] 后台首页数据统计
