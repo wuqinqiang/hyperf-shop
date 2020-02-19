@@ -181,11 +181,6 @@ class ProductController extends CommonController
     {
         $product = Product::query()->where('id', $id)
             ->with([
-//                'items' => function ($query) {
-//                $query->whereNotNull('reviewed_at')->orderBy('reviewed_at', 'desc');
-//            }, 'items.images', 'images' => function ($query) {
-//                $query->select('id', 'product_id', 'image_address');
-//            },
                 'descriptions' => function ($query) {
                     $query->select('id', 'product_id', 'type', 'content');
                 }, 'skus'])
