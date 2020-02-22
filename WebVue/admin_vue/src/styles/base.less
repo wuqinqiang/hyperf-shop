@@ -1,0 +1,49 @@
+body,
+#app,
+.home {
+	height: 100%;
+}
+
+html {
+	height: 100%;
+}
+.body {
+	min-height: 600px;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearfix:after,
+.clearfix:before {
+	display: table;
+	content: '';
+}
+
+*,
+:after,
+:before {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+// 全局样式
+@import './index.less';
+@import './layout.less';
+@import './fonts.less';
+@import './system.less';
+@import './home.less';
+@import './commodity.less';
+@import './activity.less';

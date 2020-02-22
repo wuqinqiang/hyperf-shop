@@ -76,7 +76,22 @@ php bin/hyperf.php start
 ....
 
 ### 前端目录
-**暂时未上传**
+**前端代码位于WebVue下的admin_vue目录中(至于运行环境安装网上教程很多)**
+### 前端代码运行
+
+**初始化依赖**
+```vue
+npm install
+```
+**运行服务**
+```vue
+npm run serve
+```
+**打包**
+```vue
+npm run build
+```
+**如果想修改连接后端的api地址,配置在admin_vue/src/server.js**
 
 ### 扩展包描述
 

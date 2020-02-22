@@ -1,0 +1,177 @@
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+	background: #515a6e;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active,
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+	background: #363e4f !important;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+.ivu-menu-dark.ivu-menu-vertical
+	.ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
+	color: #fff;
+}
+
+.ivu-breadcrumb {
+	height: 60px;
+	line-height: 60px;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item-active,
+.ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu-active {
+	border-right: none;
+	color: #fff;
+	background: #2d8cf0 !important;
+}
+
+.ivu-checkbox-wrapper {
+	line-height: 32px;
+}
+
+.ivu-checkbox-inner {
+	margin-right: 5px;
+}
+
+.ivu-form .ivu-form-item .ivu-form-item-label {
+	padding-right: 20px;
+}
+// tree label行高去除
+.ivu-checkbox-wrapper {
+	line-height: 0px;
+}
+
+// layout布局样式
+
+.layout {
+	background: #f5f7f9;
+	position: relative;
+	min-width: 1340px;
+	height: 100%;
+	overflow-y: auto;
+	padding-left: 200px;
+
+	// header样式
+	.header {
+		background: #fff;
+		line-height: 60px;
+		border-bottom: 1px solid red;
+		text-align: right;
+	}
+
+	// sidebar样式
+	.sidebar {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 200px;
+		height: 100%;
+		background: #515a6e;
+		overflow-y: auto;
+		overflow-x: hidden;
+		z-index: 1000;
+
+		// logo样式
+		.logo {
+			text-align: center;
+			height: 60px;
+			padding-right: 10px;
+			img {
+				height: 60px;
+			}
+		}
+
+		.ivu-menu-item-selected {
+			border-left: 2px solid #60aaf4;
+		}
+		.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item:hover {
+			background: coral !important;
+		}
+	}
+
+	// content样式
+	.view {
+		& > div {
+			background: #fff;
+			box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+			border-radius: 2px;
+			margin: 0px 15px 20px;
+			min-height: 640px;
+			padding: 20px;
+    }
+    .home {
+      background: transparent;
+      box-shadow: none;
+      padding: 60px 50px 0;
+    }
+
+		.ivu-tabs {
+			overflow: inherit !important;
+		}
+
+		.ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab {
+			border-radius: 0;
+		}
+
+		// tabs标签页样式重置
+		.demo-tabs-style1 .ivu-tabs-card .ivu-tabs-content {
+			height: 120px;
+			margin-top: -16px;
+		}
+
+		.demo-tabs-style1 .ivu-tabs-card .ivu-tabs-content .ivu-tabs-tabpane {
+			background: #fff;
+			padding: 16px;
+		}
+
+		.demo-tabs-style1 .ivu-tabs.ivu-tabs-card .ivu-tabs-bar .ivu-tabs-tab {
+			border-color: transparent;
+		}
+
+		.demo-tabs-style1 .ivu-tabs-card .ivu-tabs-bar .ivu-tabs-tab-active {
+			border-color: #fff;
+		}
+
+		.demo-tabs-style2 .ivu-tabs.ivu-tabs-card .ivu-tabs-bar .ivu-tabs-tab {
+			border-radius: 0;
+			background: #fff;
+			color: red !important;
+		}
+	}
+}
+
+.login {
+	background:#54baff;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background-image: url(/image/beijing.jpg);
+	background-repeat: no-repeat;
+
+	.login-container {
+		position: absolute;
+		width: 300px;
+		height: 300px;
+		top: 300px;
+		right: 200px;
+
+		.ivu-card-body {
+			padding: 40px;
+		}
+	}
+}
+
+.search-bar {
+	margin-top: 20px;
+	.search-item {
+		float: left;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+.ivu-page {
+	text-align: right;
+}

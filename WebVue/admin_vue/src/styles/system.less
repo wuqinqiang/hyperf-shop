@@ -1,0 +1,224 @@
+.container-system {
+  margin-top: 15px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  cursor: pointer;
+
+  .wrrap {
+    height: 40px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background-color: #f8f8f8;
+
+    // 每一个模板直接显示的内容
+    .showTemp {
+      padding: 10px;
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        display: inline-block;
+        color: #38f;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+      }
+    }
+
+    // 每一个模板下面的地区
+    .content {
+      background-color: #fff;
+      font-weight: 400;
+      color: #333;
+
+      li {
+        padding: 10px;
+        height: 40px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      .item-scroll {
+        overflow-y: scroll;
+        height: 155px;
+      }
+    }
+
+    .bottom-p {
+      height: 40px;
+      text-align: center;
+      background-color: #fff;
+      line-height: 40px;
+      color: #fff;
+    }
+  }
+}
+
+// 新建模板地区
+.template {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+}
+
+.title {
+  padding: 0px 5px;
+  line-height: 40px;
+  height: 40px;
+  background-color: #f2f2f2;
+}
+
+.area-item {
+  height: 40px;
+  line-height: 40px;
+}
+
+.entry {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #e1e1e1;
+  text-align: center;
+}
+
+.percent {
+  font-size: 16px;
+  position: relative;
+  top: 2px;
+  margin-left: 10px;
+}
+.desc {
+  color: #e5e5e5;
+  line-height: 18px;
+  margin-top: 10px;
+}
+
+.help-modal {
+  .ivu-modal-body {
+    padding-right: 40px;
+  }
+
+  .label {
+    // margin-right: 10px;
+    width: 10%;
+  }
+  .detail {
+    width: 90%;
+  }
+  .content-item {
+    border: 1px dashed #e5e5e5;
+    border-radius: 10px;
+    padding: 20px 20px 0;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .item-row {
+    margin-bottom: 20px;
+  }
+  .button-close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: #e5e5e5;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+// 日历签到页面
+.calendar {
+  .calendar_title {
+    line-height: 40px;
+    height: 40px;
+    padding-left: 10px;
+    background: #f7f8fa;
+    color: #969799;
+    margin-bottom: 20px;
+  }
+  .calendar_body {
+    padding: 10px 40px 0;
+    .rqjl {
+      position: relative;
+    }
+    .set {
+      position: absolute;
+      left: 300px;
+    }
+    .set_lable {
+      margin-top: 10px;
+      margin-left: 62px;
+      color: #969799;
+      .current {
+        margin-right: 140px;
+      }
+    }
+    .calendar_main {
+      margin-top: 60px;
+    }
+    .sign {
+      margin-top: 40px;
+    }
+  }
+  .statistice {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    .item_sta {
+      width: 800px;
+      // background: rgb(251, 251, 251);
+      height: 270px;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+    }
+    .item_sta:first-child {
+      margin-right: 20px;
+    }
+    .item_right {
+      .key {
+        width: 50%;
+        text-align: center;
+        font-size: 14px;
+        color: #323233;
+        font-weight: 600;
+        line-height: 60px;
+        .icon {
+          vertical-align: -4px;
+          margin-left: 4px;
+        }
+        .value {
+          font-size: 24px;
+          color: #333;
+        }
+      }
+    }
+  }
+  .bottom_page {
+    margin-top: 20px;
+  }
+}
+
+// 营销管理优惠卷的页面
+.calendar {
+  .search {
+    margin-bottom: 20px;
+  }
+  .search-item {
+    margin-right: 20px;
+  }
+}
+
+.coupon {
+  .footer {
+    text-align: center;
+    .btn {
+      margin-right: 20px;
+    }
+  }
+}
+
+.withdraw {
+  width: 400px;
+}
