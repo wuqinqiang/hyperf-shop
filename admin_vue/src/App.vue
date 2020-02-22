@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import './styles/fonts.less';
+@import 'styles/fonts.less';
 </style>
