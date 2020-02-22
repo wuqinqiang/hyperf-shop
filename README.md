@@ -17,7 +17,7 @@ git clone https://github.com/wuqinqiang/hyperf-shop.git
 composer install
 ```
 
-**配置env文件(文件图片默认使用阿里云oos)**
+**配置env文件,不存在env文件的话复制一份.env.example文件为.env(文件图片默认使用阿里云oos)**
 ```php
 APP_NAME=skeleton
 DB_DRIVER=mysql
