@@ -19,5 +19,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-server.js
+#server.js
 dist.zip
