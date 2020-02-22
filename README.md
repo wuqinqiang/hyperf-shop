@@ -44,7 +44,7 @@ ACCESS_SECRET=xxx
 END_POINT=xxx
 BUCKET=xx
 ```
-**项目根目录下运行迁移**
+**项目根目录下运行迁移(根目录下放置了初始化数据文件)**
 ```php
 php bin/hyperf.php migrate
 ```
@@ -52,6 +52,22 @@ php bin/hyperf.php migrate
 **启动项目(根目录下运行)**
 ```php
 php bin/hyperf.php start
+```
+
+### 前端项目
+**前端代码位于admin_vue目录中(至于运行环境安装网上教程很多)**
+
+**初始化依赖**
+```vue
+npm install
+```
+**运行服务**
+```vue
+npm run serve
+```
+**打包**
+```vue
+npm run build
 ```
 
 ### 应用部署
@@ -75,22 +91,6 @@ php bin/hyperf.php start
 - [ ] 用户操作日志
 ....
 
-### 前端目录
-**前端代码位于admin_vue目录中(至于运行环境安装网上教程很多)**
-### 前端代码运行
-
-**初始化依赖**
-```vue
-npm install
-```
-**运行服务**
-```vue
-npm run serve
-```
-**打包**
-```vue
-npm run build
-```
 **如果想修改连接后端的api地址,配置在admin_vue/src/server.js**
 
 ### 扩展包描述
